@@ -1,0 +1,44 @@
+package expo.modules.umeng;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.umeng.message.UmengNotifyClick;
+import com.umeng.message.entity.UMessage;
+
+import java.util.Map;
+import java.util.Objects;
+
+public class MfrMessageActivity extends Activity {
+
+  private final UmengNotifyClick mNotificationClick = new UmengNotifyClick() {
+    @Override
+    public void onMessage(UMessage msg) {
+      Map<String, String> newMsg = msg.extra;
+      newMsg.put("time", String.valueOf(System.currentTimeMillis()));
+      getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).edit().putString("msg", newMsg.toString())
+              .apply();
+    }
+  };
+
+  @Override
+  protected void onCreate(Bundle bundle) {
+    super.onCreate(bundle);
+    mNotificationClick.onCreate(this, getIntent());
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    var info = Objects.requireNonNull(getPackageManager().resolveActivity(new Intent(Intent.ACTION_MAIN, null).addCategory(Intent.CATEGORY_LAUNCHER), PackageManager.MATCH_DEFAULT_ONLY)).activityInfo;
+    intent.setClassName(getPackageName(), info.name);
+    startActivity(intent);
+    finish();
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    mNotificationClick.onNewIntent(intent);
+  }
+}

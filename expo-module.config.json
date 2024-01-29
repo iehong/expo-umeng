@@ -1,0 +1,17 @@
+{
+  "platforms": [
+    "ios",
+    "android",
+    "web"
+  ],
+  "apple": {
+    "modules": [
+      "ExpoUmengModule"
+    ]
+  },
+  "android": {
+    "modules": [
+      "expo.modules.umeng.ExpoUmengModule"
+    ]
+  }
+}
