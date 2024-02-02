@@ -21,7 +21,7 @@ public class MfrMessageActivity extends Activity {
       Map<String, String> newMsg = msg.extra;
       newMsg.put("time", String.valueOf(System.currentTimeMillis()));
       getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).edit().putString("msg", newMsg.toString())
-              .apply();
+          .apply();
     }
   };
 
@@ -30,8 +30,7 @@ public class MfrMessageActivity extends Activity {
     super.onCreate(bundle);
     mNotificationClick.onCreate(this, getIntent());
     Intent intent = new Intent(Intent.ACTION_MAIN);
-    var info = Objects.requireNonNull(getPackageManager().resolveActivity(new Intent(Intent.ACTION_MAIN, null).addCategory(Intent.CATEGORY_LAUNCHER), PackageManager.MATCH_DEFAULT_ONLY)).activityInfo;
-    intent.setClassName(getPackageName(), info.name);
+    intent.setClassName(getPackageName(), getPackageName() + ".MainActivity");
     startActivity(intent);
     finish();
   }
