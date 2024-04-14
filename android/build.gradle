@@ -80,6 +80,11 @@ android {
       withSourcesJar()
     }
   }
+  buildTypes {
+    release {
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
 }
 
 repositories {
@@ -95,9 +100,5 @@ dependencies {
   api 'com.umeng.umsdk:asms:1.8.2'
   // 友盟Push相关依赖
   api 'com.umeng.umsdk:push:6.6.2'
-  // 友盟性能监控
-  api 'com.umeng.umsdk:apm:1.9.5'
-  // 小米推送
-  api 'com.umeng.umsdk:xiaomi-umengaccs:2.1.0'
-  api 'com.umeng.umsdk:xiaomi-push:5.9.9'
+
 }

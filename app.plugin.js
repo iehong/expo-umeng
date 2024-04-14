@@ -4,10 +4,7 @@ const {
   createRunOncePlugin,
 } = require("@expo/config-plugins");
 const pkg = require("./package.json");
-const withKey = (
-  config,
-  { appkey, channel, push, xiaomiAppid, xiaomiAppkey }
-) => {
+const withKey = (config, { appkey, channel, push }) => {
   config = withAndroidManifest(config, (config) => {
     const mainApplication = AndroidConfig.Manifest.getMainApplicationOrThrow(
       config.modResults
@@ -26,16 +23,6 @@ const withKey = (
       mainApplication,
       "UMENG_PUSH",
       push
-    );
-    AndroidConfig.Manifest.addMetaDataItemToMainApplication(
-      mainApplication,
-      "XIAOMI_APPID",
-      xiaomiAppid
-    );
-    AndroidConfig.Manifest.addMetaDataItemToMainApplication(
-      mainApplication,
-      "XIAOMI_APPKEY",
-      xiaomiAppkey
     );
     return config;
   });

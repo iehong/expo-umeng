@@ -13,7 +13,6 @@ import com.umeng.message.UmengNotificationClickHandler
 import com.umeng.message.api.UPushRegisterCallback
 import com.umeng.message.entity.UMessage
 import expo.modules.core.interfaces.ReactActivityLifecycleListener
-import org.android.agoo.xiaomi.MiPushRegistar
 
 
 class ExpoUmengModuleReactActivityLifecycleListener : ReactActivityLifecycleListener {
@@ -36,11 +35,6 @@ class ExpoUmengModuleReactActivityLifecycleListener : ReactActivityLifecycleList
       UMConfigure.DEVICE_TYPE_PHONE,
       info!!.metaData.getString("UMENG_PUSH")
     )
-    MiPushRegistar.register(
-      activity.applicationContext,
-      info!!.metaData.getString("XIAOMI_APPID"),
-      info!!.metaData.getString("XIAOMI_APPKEY")
-    )
     PushAgent.getInstance(activity.applicationContext).onAppStart();
     PushAgent.getInstance(activity.applicationContext).register(object : UPushRegisterCallback {
       override fun onSuccess(deviceToken: String) {
@@ -49,7 +43,6 @@ class ExpoUmengModuleReactActivityLifecycleListener : ReactActivityLifecycleList
           "MyAppPreferences", Context.MODE_PRIVATE
         ).edit().putString("deviceToken", deviceToken).apply()
       }
-
       override fun onFailure(errCode: String, errDesc: String) {
         Log.e("UMLog", "注册失败 code:$errCode, desc:$errDesc")
       }

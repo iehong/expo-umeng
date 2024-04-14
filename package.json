@@ -1,6 +1,6 @@
 {
   "name": "expo-umeng",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "expo umeng sdk",
   "main": "index",
   "files": [
@@ -34,8 +34,5 @@
   "homepage": "https://github.com/iehong/expo-umeng#readme",
   "peerDependencies": {
     "expo": "*"
-  },
-  "dependencies": {
-    "@expo/config-plugins": "^7.8.4"
   }
 }
