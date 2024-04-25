@@ -9,5 +9,3 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
-# 小米
--keep class org.android.agoo.xiaomi.MiPushBroadcastReceiver {*;}
